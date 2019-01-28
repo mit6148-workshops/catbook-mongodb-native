@@ -11,6 +11,9 @@ const passport = require('./passport');
 const views = require('./routes/views');
 const api = require('./routes/api');
 
+// Initalize mongodb
+require('./db2').init();
+
 
 // initialize express app
 const app = express();
