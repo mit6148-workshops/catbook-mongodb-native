@@ -1,7 +1,7 @@
 const passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-const mongo = require('./db2');
+const mongo = require('./db');
 
 // set up passport configs
 passport.use(new GoogleStrategy({

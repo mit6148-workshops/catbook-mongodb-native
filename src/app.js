@@ -6,13 +6,12 @@ const session = require('express-session');
 const socketio = require('socket.io');
 
 // local dependencies
-const db = require('./db');
 const passport = require('./passport');
 const views = require('./routes/views');
 const api = require('./routes/api');
 
 // Initalize mongodb
-require('./db2').init();
+require('./db').init();
 
 
 // initialize express app

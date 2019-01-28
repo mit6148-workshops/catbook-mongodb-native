@@ -2,7 +2,7 @@
 const express = require('express');
 const connect = require('connect-ensure-login');
 
-const mongo = require('../db2');
+const mongo = require('../db');
 const ObjectId = require('mongodb').ObjectID;
 
 const router = express.Router();
