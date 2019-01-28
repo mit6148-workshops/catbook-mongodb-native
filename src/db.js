@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 // Example URI ---> mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net?retryWrites=true
 const mongoURL = 'mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net?retryWrites=true';
 
-const client = new MongoClient(mongoURL);
+const client = new MongoClient(mongoURL, {useNewUrlParser: true});
 
 let _db;
 module.exports = {
