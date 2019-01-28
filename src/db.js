@@ -13,7 +13,7 @@ module.exports = {
       .then(() => {
         // connect to the db with this name
         _db = client.db('catbook-native');
-                console.log("Connected to mongodb!");
+        console.log("Connected to mongodb!");
         return _db;
       })
       .catch(err => {
