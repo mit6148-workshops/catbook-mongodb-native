@@ -22,7 +22,7 @@ router.get('/user', function(req, res) {
   users.findOne({_id: ObjectId(req.query._id)})
     .then(user => {
       res.send(user);
-    }).catch(err => console.log);
+    }).catch(console.log);
 });
 
 router.get('/stories', function(req, res) {
@@ -31,7 +31,7 @@ router.get('/stories', function(req, res) {
     .then(stories => {
       res.send(stories);
     })
-    .catch(err => console.log);
+    .catch(console.log);
 });
 
 router.post(
@@ -60,7 +60,7 @@ router.post(
       .then(user => {
         console.log("insert success");
       })
-      .catch(err => console.log);
+      .catch(console.log);
     
     res.send({});
   }
@@ -73,7 +73,7 @@ router.get('/comment', function(req, res) {
     .then(comments => {
       res.send(comments);
     })
-    .catch(err => console.log);
+    .catch(console.log);
 });
 
 router.post(
@@ -94,7 +94,7 @@ router.post(
         const io = req.app.get('socketio');
         io.emit("comment", comment);
       })
-      .catch(err => console.log);
+      .catch(console.log);
 
     res.send({});
   }
