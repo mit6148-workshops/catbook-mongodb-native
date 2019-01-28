@@ -1,6 +1,7 @@
 const passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+const mongo = require('./db2');
 const User = require('./models/user');
 
 // set up passport configs
@@ -9,26 +10,21 @@ passport.use(new GoogleStrategy({
   clientSecret: 'h7n4UrnZk18vLKjBH6uzPn0u',
   callbackURL: '/auth/google/callback'
 }, function(accessToken, refreshToken, profile, done) {
-  User.findOne({
-    'googleid': profile.id
-  }, function(err, user) {
-    if (err) return done(err);
-
-    if (!user) {
-      const user = new User({
+  const users = mongo.getDb().collection('users');
+  users.findOne({googleid: profile.id})
+    .then(user => {
+      if (user) return user;
+      
+      // if user doesn't exist, make a new mongo document
+      return users.insertOne({
         name: profile.displayName,
         googleid: profile.id
       });
-
-      user.save(function(err) {
-        if (err) console.log(err);
-
-        return done(err, user);
-      });
-    } else {
-      return done(err, user);
-    }
-  });
+    })
+    .then(user => {
+      done(null, user);
+    })
+    .catch(err => done(err));
 }));
 
 passport.serializeUser(function(user, done) {

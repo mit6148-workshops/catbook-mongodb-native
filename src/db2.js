@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 
 // set up mongoDB connection
-// Example URI ---> mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net/catbook2?retryWrites=true
+// Example URI ---> mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net?retryWrites=true
 const mongoURL = 'mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net?retryWrites=true';
 
 const client = new MongoClient(mongoURL);
@@ -15,7 +15,7 @@ module.exports = {
 				_db = client.db('catbook-native');
 				return _db;
 			})
-      .catch((err) => {
+      .catch(err => {
 				console.log("Failed to connect to mongodb");
 				console.log(err);
 			});
